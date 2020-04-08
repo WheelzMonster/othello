@@ -16,7 +16,10 @@ def test(ln):
 test(8)
 """
 
-board = Plateau(8)
+userBoardChoice = int(input(
+    "choisissez la longueur l de votre tableau (si vous choisissez 8, vous aurez une grille de 8 x 8): "))
+
+board = Plateau(userBoardChoice)
 board.affichage()
 
 
@@ -26,8 +29,8 @@ saisieCoordonees = input(
 listresult = [int(i) for i in saisieCoordonees]
 print(listresult)
 
-pion1 = Pion(listresult[0], listresult[1], 'x')
-pion2 = Pion(listresult[0], listresult[1], 'o')
+pion1 = Pion(listresult[1], listresult[0], 'x')
+
 
 # if a[listresult[0]][listresult[1]] == '.':
 #     board.placerPion(pion2)

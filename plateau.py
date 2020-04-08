@@ -2,20 +2,31 @@ from pion import Pion
 
 
 class Plateau:
-    def __init__(self, dimension):
-        self.a = [[" ", "1", "2", "3", "4", "5", "6", "7", "8"], ["1", ".", ".", ".", ".", ".", ".", ".", "."], ["2", ".", ".", ".", ".", ".", ".", ".", "."], ["3", ".", ".", ".", ".", ".", ".", ".", "."], ["4", ".", ".", ".",
-                                                                                                                                                                                                               "x", "o", ".", ".", "."], ["5", ".", ".", ".", "o", "x", ".", ".", "."], ["6", ".", ".", ".", ".", ".", ".", ".", "."], ["7", ".", ".", ".", ".", ".", ".", ".", "."], ["8", ".", ".", ".", ".", ".", ".", ".", "."]]
-        self.dimension = dimension
+    def __init__(self, dimensions):
+        self.dimensions = dimensions
+        self.n = dimensions
+        self.m = dimensions
+        self.cases = [['.'] * self.m for i in range(self.n)]
 
     def affichage(self):
-        # a = [[" ", "1", "2", "3", "4", "5", "6", "7", "8"], ["1", ".", ".", ".", ".", ".", ".", ".", "."], ["2", ".", ".", ".", ".", ".", ".", ".", "."], ["3", ".", ".", ".", ".", ".", ".", ".", "."], ["4", ".", ".", ".",
-        for i in range(len(self.a)):
-            for j in range(len(self.a[i])):
-                print(self.a[i][j], end=' ')
-            print()
+
+        self.cases[0][0] = ' '
+        self.cases[5][4] = 'X'
+        self.cases[4][5] = 'X'
+        self.cases[5][5] = 'O'
+        self.cases[4][4] = 'O'
+
+        p = 1
+        for i in range(1, self.dimensions):
+            self.cases[p][0] = str(i)
+            self.cases[0][p] = str(i)
+            p += 1
+
+        for x in self.cases:
+            print(' '.join(x))
 
     def isGameDone(self):
         print('le jeu est finis')
 
     def placerPion(self, Pion):
-        self.a[Pion.axex][Pion.axey] = Pion.equipe
+        self.cases[Pion.axex][Pion.axey] = Pion.equipe
