@@ -23,20 +23,31 @@ board = Plateau(userBoardChoice)
 board.affichage()
 
 
-saisieCoordonees = input(
-    'rentrez les coordonnes du pion au format x y: ').split()
+def gameLoop():
 
-listresult = [int(i) for i in saisieCoordonees]
-print(listresult)
+    game = True
+    turn = 0
 
-pion1 = Pion(listresult[1], listresult[0], 'x')
+    while game:
+        saisieCoordonees = input(
+            'rentrez les coordonnes du pion au format x y: ').split()
+
+        listresult = [int(i) for i in saisieCoordonees]
+
+        if turn % 2 == 0:
+            pion = Pion(listresult[0], listresult[1], 'x')
+        else:
+            pion = Pion(listresult[0], listresult[1], 'o')
+
+        # if a[listresult[0]][listresult[1]] == '.':
+        #     board.placerPion(pion2)
+        # else:
+        #     print('cette case est deja prise')
+
+        board.placerPion(pion)
+        board.affichage()
+        turn += 1
+        listresult.clear()
 
 
-# if a[listresult[0]][listresult[1]] == '.':
-#     board.placerPion(pion2)
-# else:
-#     print('cette case est deja prise')
-
-board.placerPion(pion1)
-
-board.affichage()
+gameLoop()
