@@ -6,18 +6,16 @@ class Partie:
     def __init__(self, dimension):
         self.plateau = Plateau(dimension)
 
-    def coupJoue(self):
-        turn = 0
+    def coupJoue(self, turn):
         saisieCoordonees = input(
             'rentrez les coordonnes du pion au format x y: ').split()
 
         listresult = [int(i) for i in saisieCoordonees]
 
         if turn % 2 == 0:
-            pion = Pion(listresult[0], listresult[1], 'X')
-        else:
-            pion = Pion(listresult[0], listresult[1], 'O')
+            pion = Pion(listresult[0], listresult[1], ' O')
+        elif turn % 2 != 0:
+            pion = Pion(listresult[0], listresult[1], ' X')
 
-        turn += 1
         listresult.clear()
         return pion
