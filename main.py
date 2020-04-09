@@ -26,8 +26,8 @@ def gameLoop():
 
     partie = Partie(userBoardChoice+1)
     partie.plateau.affichage()
+    turn = 0
     while game:
-        turn = 0
         pion = partie.coupJoue(turn)
         turn += 1
         # if a[listresult[0]][listresult[1]] == '.':
