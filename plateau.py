@@ -6,20 +6,23 @@ class Plateau:
         self.dimensions = dimensions
         self.n = dimensions
         self.m = dimensions
-        self.cases = [['.'] * self.m for i in range(self.n)]
+        self.cases = [[' .'] * self.m for i in range(self.n)]
 
     def affichage(self):
 
-        self.cases[0][0] = ' '
-        self.cases[5][4] = 'X'
-        self.cases[4][5] = 'X'
-        self.cases[5][5] = 'O'
-        self.cases[4][4] = 'O'
+        self.cases[0][0] = '  '
+        self.cases[5][4] = ' X'
+        self.cases[4][5] = ' X'
+        self.cases[5][5] = ' O'
+        self.cases[4][4] = ' O'
 
         p = 1
         for i in range(1, self.dimensions):
-            self.cases[p][0] = str(i)
-            self.cases[0][p] = str(i)
+            if i <= 9:
+                self.cases[p][0] = " " + str(i)
+            else:
+                self.cases[p][0] = "" + str(i)  # vertical
+            self.cases[0][p] = " " + str(i)  # horizontal
             p += 1
 
         for x in self.cases:

@@ -1,5 +1,6 @@
 from plateau import Plateau
 from pion import Pion
+from partie import Partie
 
 """
 def test(ln):
@@ -16,38 +17,24 @@ def test(ln):
 test(8)
 """
 
-userBoardChoice = int(input(
-    "choisissez la longueur l de votre tableau (si vous choisissez 8, vous aurez une grille de 8 x 8): "))
-
-board = Plateau(userBoardChoice)
-board.affichage()
-
 
 def gameLoop():
 
     game = True
-    turn = 0
+    userBoardChoice = int(input(
+        "choisissez la longueur l de votre tableau (si vous choisissez 8, vous aurez une grille de 8 x 8): "))
 
+    partie = Partie(userBoardChoice+1)
+    partie.plateau.affichage()
     while game:
-        saisieCoordonees = input(
-            'rentrez les coordonnes du pion au format x y: ').split()
-
-        listresult = [int(i) for i in saisieCoordonees]
-
-        if turn % 2 == 0:
-            pion = Pion(listresult[0], listresult[1], 'x')
-        else:
-            pion = Pion(listresult[0], listresult[1], 'o')
-
+        pion = partie.coupJoue()
         # if a[listresult[0]][listresult[1]] == '.':
         #     board.placerPion(pion2)
         # else:
         #     print('cette case est deja prise')
 
-        board.placerPion(pion)
-        board.affichage()
-        turn += 1
-        listresult.clear()
+        partie.plateau.placerPion(pion)
+        partie.plateau.affichage()
 
 
 gameLoop()
