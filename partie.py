@@ -13,9 +13,9 @@ class Partie:
         listresult = [int(i) for i in saisieCoordonees]
 
         if turn % 2 == 0:
-            pion = Pion(listresult[0], listresult[1], ' O')
-        elif turn % 2 != 0:
             pion = Pion(listresult[0], listresult[1], ' X')
+        elif turn % 2 != 0:
+            pion = Pion(listresult[0], listresult[1], ' O')
 
         listresult.clear()
         return pion

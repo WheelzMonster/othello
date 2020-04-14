@@ -11,10 +11,10 @@ class Plateau:
     def affichage(self):
 
         self.cases[0][0] = '  '
-        self.cases[5][4] = ' X'
-        self.cases[4][5] = ' X'
-        self.cases[5][5] = ' O'
-        self.cases[4][4] = ' O'
+        self.cases[self.dimensions // 2][self.dimensions // 2] = ' O'
+        self.cases[self.dimensions // 2][self.dimensions // 2 + 1] = ' X'
+        self.cases[self.dimensions // 2 + 1][self.dimensions // 2] = ' X'
+        self.cases[self.dimensions // 2 + 1][self.dimensions // 2 + 1] = ' O'
 
         p = 1
         for i in range(1, self.dimensions):
