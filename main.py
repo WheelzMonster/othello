@@ -2,6 +2,8 @@ from pion import Pion
 from partie import Partie
 from plateau import Plateau
 
+
+
 def gameLoop():
 
     game = True
@@ -33,4 +35,9 @@ def gameLoop():
         turn += 1
 
 
-gameLoop()
+#gameLoop()
+partie = Partie(6)
+partie.plateau.affichage()
+MonPion = Pion(4, 4, ' X')
+
+partie.plateau.case_voisine([1, -1], MonPion)
