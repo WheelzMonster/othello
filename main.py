@@ -7,6 +7,9 @@ def gameLoop():
     game = True
     userBoardChoice = int(input(
         "choisissez la longueur de votre tableau (4, 6, 8 ou 10): "))
+    while userBoardChoice != 4 and userBoardChoice != 6 and userBoardChoice != 8 and userBoardChoice != 10:
+        userBoardChoice = int(input(
+        "choisissez la longueur de votre tableau (4, 6, 8 ou 10): "))
 
     partie = Partie(userBoardChoice+1)
     partie.plateau.affichage()
