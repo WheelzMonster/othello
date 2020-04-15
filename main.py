@@ -16,22 +16,18 @@ def gameLoop():
     partie = Partie(userBoardChoice+1)
     partie.plateau.affichage()
     turn = 0
-    Pion.equipe = " X"
     while game:
         pion = partie.coupJoue(turn)
-        # if a[listresult[0]][listresult[1]] == '.':
-        #     board.placerPion(pion2)
-        # else:
-        #     print('cette case est deja prise')
-
-
         while partie.plateau.cases[pion.axex][pion.axey] != " .":
             print("vous ne pouvez pas jouer ici, cette case est deja jouee")
             pion = partie.coupJoue(turn)
+
         partie.plateau.placerPion(pion)
 
+        liste = partie.plateau.pionRetourne(pion)
+        partie.plateau.retourne(liste,turn)
+
         partie.plateau.affichage()
-        
         turn += 1
 
 

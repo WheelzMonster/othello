@@ -7,15 +7,13 @@ class Plateau:
         self.n = dimensions
         self.m = dimensions
         self.cases = [[' .'] * self.m for i in range(self.n)]
-
-    def affichage(self):
-
         self.cases[0][0] = '  '
         self.cases[self.dimensions // 2][self.dimensions // 2] = ' O'
         self.cases[self.dimensions // 2][self.dimensions // 2 + 1] = ' X'
         self.cases[self.dimensions // 2 + 1][self.dimensions // 2] = ' X'
         self.cases[self.dimensions // 2 + 1][self.dimensions // 2 + 1] = ' O'
 
+    def affichage(self):
         p = 1
         for i in range(1, self.dimensions):
             if i <= 9:
@@ -44,23 +42,38 @@ class Plateau:
 #diag bd = [1, 1]
 
     def case_voisine(self, direction, pion):
-        posx = pion.axex + direction[0]
-        posy = pion.axey + direction[1]
-        print (posx, posy)
-        equipe = self.cases[posx][posy]
-        pos_case_voisine = [posx, posy, equipe]
-        print(pos_case_voisine)
+        posx = pion[0] + direction[0]
+        posy = pion[1] + direction[1]
+        #equipe = self.cases[posx][posy]
+        pos_case_voisine = [posx, posy, self.cases[posx][posy]]
         return pos_case_voisine
 
     def pionRetourne(self, pion):
-        case = pion[pion.axex][pion.axey]
+        case = []
+        case.append(pion.axex)
+        case.append(pion.axey)
         equipe = pion.equipe
         direction = []
-        for xdirection, ydirection in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
-            last_pos = case_voisine(direction, pion)
-            liste_a_retourner = []
-            while last_pos[2] != equipe:
-                liste_a_retourner.append(last_pos)
-                last_pos = case_voisine(direction, last_pos)
+        liste_a_retourner = []
+        for xdirection, ydirection in [[0, -1], [1, -1], [1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1]]:
+            direction.append(xdirection)
+            direction.append(ydirection)
+            last_pos = self.case_voisine(direction, case)
+            liste_temporaire = []
+            while last_pos[2] != equipe and last_pos[2] != ' .':
+                liste_temporaire.append(last_pos)
+                last_pos = self.case_voisine(direction, last_pos)
+            direction.clear()
             if last_pos[2] == equipe:
-                return liste_a_retourner
+                for p in liste_temporaire:
+                    liste_a_retourner.append(p)
+        print('liste: ', liste_a_retourner)
+        return liste_a_retourner
+
+    def retourne(self, liste, turn):
+        if turn % 2 == 0:
+            for x in liste:
+                self.cases[x[0]][x[1]] = ' X'
+        elif turn % 2 != 0:
+            for x in liste:
+                self.cases[x[0]][x[1]] = ' O'

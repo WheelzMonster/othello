@@ -7,9 +7,13 @@ class Partie:
         self.plateau = Plateau(dimension)
 
     def coupJoue(self, turn):
-        saisieCoordonees = input(
-            'rentrez les coordonnes du pion au format x y: ').split()
-
+        if turn % 2 == 0:
+            saisieCoordonees = input(
+            "c'est au tour des X de jouer \nrentrez les coordonnes du pion au format x y: ").split()
+        elif turn % 2 != 0:
+            saisieCoordonees = input(
+            "c'est au tour des O de jouer \nrentrez les coordonnes du pion au format x y: ").split()
+        
         listresult = [int(i) for i in saisieCoordonees]
 
         if turn % 2 == 0:
