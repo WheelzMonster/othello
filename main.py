@@ -35,9 +35,9 @@ def gameLoop():
         turn += 1
 
 
-#gameLoop()
-partie = Partie(6)
-partie.plateau.affichage()
-MonPion = Pion(4, 4, ' X')
+gameLoop()
+#partie = Partie(6)
+#partie.plateau.affichage()
+#MonPion = Pion(4, 4, ' X')
 
-partie.plateau.case_voisine([1, -1], MonPion)
+#partie.plateau.case_voisine([1, -1], MonPion)
