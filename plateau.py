@@ -4,9 +4,12 @@ from pion import Pion
 class Plateau:
     def __init__(self, dimensions):
         self.dimensions = dimensions
-        self.n = dimensions
-        self.m = dimensions
+        self.n = dimensions + 1
+        self.m = dimensions + 1
         self.cases = [[' .'] * self.m for i in range(self.n)]
+        self.cases[self.n - 1][0] = '  '
+        self.cases[0][self.n - 1] = '  '
+        self.cases[self.n - 1][self.n - 1] = '  '
         self.cases[0][0] = '  '
         self.cases[self.dimensions // 2][self.dimensions // 2] = ' O'
         self.cases[self.dimensions // 2][self.dimensions // 2 + 1] = ' X'
@@ -18,8 +21,13 @@ class Plateau:
         for i in range(1, self.dimensions):
             if i <= 9:
                 self.cases[p][0] = " " + str(i)
+                self.cases[self.n - 1][p] = " " + str(i)
+                self.cases[p][self.n - 1] = " " + str(i)
             else:
                 self.cases[p][0] = "" + str(i)  # vertical
+
+                self.cases[self.n - 1][p] = " " + str(i)
+                self.cases[p][self.n - 1] = " " + str(i)
             self.cases[0][p] = " " + str(i)  # horizontal
             p += 1
 
@@ -60,14 +68,13 @@ class Plateau:
             direction.append(ydirection)
             last_pos = self.case_voisine(direction, case)
             liste_temporaire = []
-            while last_pos[2] != equipe and last_pos[2] != ' .':
+            while last_pos[2] != equipe and last_pos[2] != ' .' and not last_pos[2].strip().isnumeric() and last_pos[2] != "  ":
                 liste_temporaire.append(last_pos)
                 last_pos = self.case_voisine(direction, last_pos)
             direction.clear()
             if last_pos[2] == equipe:
                 for p in liste_temporaire:
                     liste_a_retourner.append(p)
-        print('liste: ', liste_a_retourner)
         return liste_a_retourner
 
     def retourne(self, liste, turn):
