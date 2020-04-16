@@ -34,9 +34,6 @@ class Plateau:
         for x in self.cases:
             print(' '.join(x))
 
-    def isGameDone(self):
-        print('le jeu est finis')
-
     def placerPion(self, Pion):
         self.cases[Pion.axex][Pion.axey] = Pion.equipe
     
@@ -84,3 +81,17 @@ class Plateau:
         elif turn % 2 != 0:
             for x in liste:
                 self.cases[x[0]][x[1]] = ' O'
+
+    def finDePartie(self):
+        nbX = 0
+        nbO = 0
+        gagnant = []
+        for i in self.cases:
+            for j in i:
+                if j == " X":
+                    nbX += 1
+                if j == " O":
+                    nbO += 1
+        gagnant.append(nbX)
+        gagnant.append(nbO)
+        return gagnant

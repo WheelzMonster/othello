@@ -22,12 +22,31 @@ def gameLoop():
             print("vous ne pouvez pas jouer ici, cette case est deja jouee")
             pion = partie.coupJoue(turn)
 
-        partie.plateau.placerPion(pion)
-
         liste = partie.plateau.pionRetourne(pion)
+        while not liste:
+            print("vous ne pouvez pas jouer ici car vous ne retournez aucun pion adverse")
+            pion = partie.coupJoue(turn)
+            liste = partie.plateau.pionRetourne(pion)
+
+        partie.plateau.placerPion(pion)
         partie.plateau.retourne(liste,turn)
 
         partie.plateau.affichage()
+        gagnant = partie.plateau.finDePartie()
+
+        total = (userBoardChoice) * (userBoardChoice)
+        if gagnant[0] == 0:
+            print("Bravo ! les O ont gagnés !")
+            game = False
+        elif gagnant[1] == 0:
+            print("Bravo ! Les X ont gagnés !")
+            game = False
+        elif gagnant[0] < gagnant[1] and gagnant[0] + gagnant[1] == total:
+            print ("Bravo ! Les O ont gagnés !")
+            game = False
+        elif gagnant[0] > gagnant[1] and gagnant[0] + gagnant[1] == total:
+            print ("Bravo ! Les X ont gagnés !")
+            game = False
         turn += 1
 
 
