@@ -11,9 +11,15 @@ class Partie:
         if turn % 2 == 0:
             saisieCoordonees = input(
                 "c'est au tour des X de jouer \nrentrez les coordonnes du pion au format x y: ").split()
+            while int(saisieCoordonees[0]) >= (self.plateau.dimensions) or int(saisieCoordonees[1]) >= (self.plateau.dimensions):
+                saisieCoordonees = input(
+                    "coordonnées invalides, vous êtes en dehors de la grille, c'est toujours au tour des X de jouer \nrentrez les coordonnes du pion au format x y: ").split()
         elif turn % 2 != 0:
             saisieCoordonees = input(
                 "c'est au tour des O de jouer \nrentrez les coordonnes du pion au format x y: ").split()
+            while int(saisieCoordonees[0]) >= (self.plateau.dimensions) or int(saisieCoordonees[1]) >= (self.plateau.dimensions):
+                saisieCoordonees = input(
+                    "coordonnées invalides, vous êtes en dehors de la grille, c'est toujours au tour des O de jouer \nrentrez les coordonnes du pion au format x y: ").split()
 
         listresult = [int(i) for i in saisieCoordonees]
 
