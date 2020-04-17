@@ -4,9 +4,10 @@ from objet_plateau import Plateau
 
 class Partie:
     def __init__(self, dimension):
+        # créer une partie avec un objet plateau en attribut
         self.plateau = Plateau(dimension)
 
-    def coupJoue(self, turn):
+    def coupJoue(self, turn):  # permet a l'utilisateur de rentrer les coordonnées de son pion et ça créer un pion x ou o en fonction du tours
         if turn % 2 == 0:
             saisieCoordonees = input(
                 "c'est au tour des X de jouer \nrentrez les coordonnes du pion au format x y: ").split()
