@@ -1,7 +1,6 @@
-from pion import Pion
-from partie import Partie
-from plateau import Plateau
-
+from objet_pion import Pion
+from objet_partie import Partie
+from objet_plateau import Plateau
 
 
 def gameLoop():
@@ -11,7 +10,7 @@ def gameLoop():
         "choisissez la longueur de votre tableau (4, 6, 8 ou 10): "))
     while userBoardChoice != 4 and userBoardChoice != 6 and userBoardChoice != 8 and userBoardChoice != 10:
         userBoardChoice = int(input(
-        "choisissez la longueur de votre tableau (4, 6, 8 ou 10): "))
+            "Saisie incorrecte, veuillez choisir la longueur de votre tableau dans les options suivantes (4, 6, 8 ou 10): "))
 
     partie = Partie(userBoardChoice+1)
     partie.plateau.affichage()
@@ -29,7 +28,7 @@ def gameLoop():
             liste = partie.plateau.pionRetourne(pion)
 
         partie.plateau.placerPion(pion)
-        partie.plateau.retourne(liste,turn)
+        partie.plateau.retourne(liste, turn)
 
         partie.plateau.affichage()
         gagnant = partie.plateau.finDePartie()
@@ -42,17 +41,12 @@ def gameLoop():
             print("Bravo ! Les X ont gagnés !")
             game = False
         elif gagnant[0] < gagnant[1] and gagnant[0] + gagnant[1] == total:
-            print ("Bravo ! Les O ont gagnés !")
+            print("Bravo ! Les O ont gagnés !")
             game = False
         elif gagnant[0] > gagnant[1] and gagnant[0] + gagnant[1] == total:
-            print ("Bravo ! Les X ont gagnés !")
+            print("Bravo ! Les X ont gagnés !")
             game = False
         turn += 1
 
 
 gameLoop()
-#partie = Partie(6)
-#partie.plateau.affichage()
-#MonPion = Pion(4, 4, ' X')
-
-#partie.plateau.case_voisine([1, -1], MonPion)

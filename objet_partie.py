@@ -1,5 +1,5 @@
-from pion import Pion
-from plateau import Plateau
+from objet_pion import Pion
+from objet_plateau import Plateau
 
 
 class Partie:
@@ -9,11 +9,11 @@ class Partie:
     def coupJoue(self, turn):
         if turn % 2 == 0:
             saisieCoordonees = input(
-            "c'est au tour des X de jouer \nrentrez les coordonnes du pion au format x y: ").split()
+                "c'est au tour des X de jouer \nrentrez les coordonnes du pion au format x y: ").split()
         elif turn % 2 != 0:
             saisieCoordonees = input(
-            "c'est au tour des O de jouer \nrentrez les coordonnes du pion au format x y: ").split()
-        
+                "c'est au tour des O de jouer \nrentrez les coordonnes du pion au format x y: ").split()
+
         listresult = [int(i) for i in saisieCoordonees]
 
         if turn % 2 == 0:

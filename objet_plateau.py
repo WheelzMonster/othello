@@ -1,4 +1,4 @@
-from pion import Pion
+from objet_pion import Pion
 
 
 class Plateau:
@@ -36,15 +36,15 @@ class Plateau:
 
     def placerPion(self, Pion):
         self.cases[Pion.axex][Pion.axey] = Pion.equipe
-    
+
 #haut    = [0, -1]
 #bas     = [0, 1]
 #gauche  = [-1, 0]
 #droite  = [1, 0]
-#diag hg = [-1, -1]
-#diag hd = [1, -1]
-#diag bg = [-1, 1]
-#diag bd = [1, 1]
+# diag hg = [-1, -1]
+# diag hd = [1, -1]
+# diag bg = [-1, 1]
+# diag bd = [1, 1]
 
     def case_voisine(self, direction, pion):
         posx = pion[0] + direction[0]
